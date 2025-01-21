@@ -1,0 +1,121 @@
+# app/swagger_config.yaml
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Get Products API"
+  description: "API to get products from the database"
+paths:
+  /items:
+    get:
+      description: "Get all products"
+      responses:
+        200:
+          description: "Successfully fetched products"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+              products:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    id:
+                      type: "integer"
+                    name:
+                      type: "string"
+                    description:
+                      type: "string"
+                    price:
+                      type: "string"
+                    created_at:
+                      type: "string"
+        404:
+          description: "No products found"
+  /items/{product_id}:
+    get:
+      description: "Get product by ID"
+      parameters:
+        - name: "product_id"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Successfully fetched product"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+              product:
+                type: "object"
+                properties:
+                  id:
+                    type: "integer"
+                  name:
+                    type: "string"
+                  description:
+                    type: "string"
+                  price:
+                    type: "string"
+                  created_at:
+                    type: "string"
+        400:
+          description: "Product id is required"
+        404:
+          description: "Product not found"
+  /categories:
+    get:
+      description: "Get all categories"
+      responses:
+        200:
+          description: "Successfully fetched categories"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+              categories:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    id:
+                      type: "integer"
+                    name:
+                      type: "string"
+                    description:
+                      type: "string"
+        404:
+          description: "No categories found"
+  /categories/{category_id}:
+    get:
+      description: "Get category by ID"
+      parameters:
+        - name: "category_id"
+          in: "path"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Successfully fetched category"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+              category:
+                type: "object"
+                properties:
+                  id:
+                    type: "integer"
+                  name:
+                    type: "string"
+                  description:
+                    type: "string"
+        400:
+          description: "Category id is required"
+        404:
+          description: "Category not found"
